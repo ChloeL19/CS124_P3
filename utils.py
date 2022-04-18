@@ -18,6 +18,22 @@ def compute_residue_n(A, S):
         res += a*s
     return abs(res)
 
+def pp_conversion(A, G):
+    '''
+    Convert a solution in prepartitioned form to standard form.
+        - A: list of integers that have been assigned groups
+        - G: list of group IDs for each of the integers
+    '''
+    res = {}
+    for i in range(len(G)):
+        if G[i] in res.keys():
+            res[G[i]] += A[i]
+            res[i] = 0
+        else:
+            res[i] = A[i]
+    return res.values
+
+
 class MaxBinHeap:
     '''
     A binary heap implementation that supports retrieving
@@ -145,3 +161,6 @@ if __name__ == "__main__":
  
     maxHeap.Print()
     print("The Max val is " + str(maxHeap.getMax()))
+
+    # unit test the conversion from prepartitioned
+    print("---------------Unit Testing Prepartition Conversion----------------")
