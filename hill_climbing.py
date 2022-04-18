@@ -34,7 +34,7 @@ def hill_climb_p(inputfile, max_iter):
     '''
     Hill climbing algorithm for solutions in prepartitioned form.
     '''
-    pass
+    return None, None
 
 if __name__ == "__main__":
     # unit testing

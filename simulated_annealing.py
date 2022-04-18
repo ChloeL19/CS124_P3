@@ -13,13 +13,13 @@ def sim_ann_n(inputfile, max_iter):
         - max_iter: int, maximum number of iterations for
                     which to run the algorithm. 
     '''
-    pass
+    return None, None
 
 def sim_ann_p(inputfile, max_iter):
     '''
     Simulated annealing with prepartitioned solution representation.
     '''
-    pass
+    return None, None
 
 if __name__ == "__main__":
     # unit testing

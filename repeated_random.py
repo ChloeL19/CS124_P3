@@ -33,7 +33,7 @@ def prepartitioned_rr(inputfile, max_iter):
     Repeated random algorithm on prepartitioned representation.
     (i.e. list of group IDs.)
     '''
-    pass
+    return None, None
 
 if __name__ == "__main__":
     # do some testing here
