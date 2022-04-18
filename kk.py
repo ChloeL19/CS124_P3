@@ -5,13 +5,13 @@ and prepartitioned input.
 import numpy as np
 from utils import *
 
-def kk_n():
+def kk_n(inputfile, max_iter):
     '''
     KK algorithm on normal data representation.
     '''
     pass
 
-def kk_p():
+def kk_p(inputfile, max_iter):
     '''
     KK algorithm on prepartitioned data representation.
     '''

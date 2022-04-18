@@ -30,7 +30,7 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
             randsol = randsol2
     return compute_residue_n(randsol), randsol
 
-def hill_climb_p():
+def hill_climb_p(inputfile, max_iter):
     '''
     Hill climbing algorithm for solutions in prepartitioned form.
     '''

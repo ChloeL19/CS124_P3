@@ -15,7 +15,7 @@ def sim_ann_n(inputfile, max_iter):
     '''
     pass
 
-def sim_ann_p():
+def sim_ann_p(inputfile, max_iter):
     '''
     Simulated annealing with prepartitioned solution representation.
     '''

@@ -28,7 +28,7 @@ def normal_rr(inputfile, max_iter, verbose=False):
             randsol = randsol2
     return compute_residue_n(randsol), randsol
 
-def prepartitioned_rr():
+def prepartitioned_rr(inputfile, max_iter):
     '''
     Repeated random algorithm on prepartitioned representation.
     (i.e. list of group IDs.)
