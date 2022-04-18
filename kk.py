@@ -1,6 +1,5 @@
 '''
-The karmarker karp algorithm, run on both standard input
-and prepartitioned input.
+The karmarker karp algorithm, run on standard input.
 '''
 import numpy as np
 from utils import *
@@ -8,12 +7,6 @@ from utils import *
 def kk_n(inputfile, max_iter):
     '''
     KK algorithm on normal data representation.
-    '''
-    return None, None
-
-def kk_p(inputfile, max_iter):
-    '''
-    KK algorithm on prepartitioned data representation.
     '''
     return None, None
 

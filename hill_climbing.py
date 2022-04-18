@@ -28,7 +28,7 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):
             randsol = randsol2
-    return compute_residue_n(randsol), randsol
+    return compute_residue_n(A, randsol), randsol
 
 def hill_climb_p(inputfile, max_iter):
     '''
