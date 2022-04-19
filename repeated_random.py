@@ -42,7 +42,7 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
     np.random.shuffle(randsol)
     for i in range(max_iter):
         randsol2 = randsol.copy()
-        np.shuffle(randsol2)
+        np.random.shuffle(randsol2)
         if compute_residue_p(A, randsol2) < \
             compute_residue_p(A, randsol):
             randsol = randsol2
