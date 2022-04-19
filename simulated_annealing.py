@@ -12,7 +12,7 @@ def T(iter):
     Temperature function for simulated anealing.
         - iter: int
     '''
-    return 10**10(0.8)**(math.floor(iter/300))
+    return 10**10*(0.8)**(math.floor(iter/300))
 
 def sim_ann_n(inputfile, max_iter, verbose=False):
     '''
@@ -32,14 +32,14 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
         randsol1 = randsol.copy()
         randsol1[tind] *=-1
         if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
-            randsol = randsol1 # confirm!
+            randsol = randsol1.copy() # confirm!
         else:
             randsol = math.exp((-1*compute_residue_n(A, randsol1)\
                 -compute_residue_n(A, randsol))/T(i))
             #randsol = randsol1 # this is wrong, I'm using placeholder
         if compute_residue_n(A, randsol) < \
             compute_residue_n(A, randsol2):
-            randsol2 = randsol
+            randsol2 = randsol.copy()
     return compute_residue_n(A, randsol2), randsol2
 
 def sim_ann_p(inputfile, max_iter):
