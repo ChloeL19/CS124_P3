@@ -17,9 +17,15 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = randsol1 = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
+    randsol = randsol2 = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
     for i in range(max_iter):
-        pass
+        tind = np.random.randint(0,size)
+        randsol1 = randsol
+        randsol1[tind] *=-1
+        if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
+            randsol = randsol1
+        else:
+            randsol = None
     return None, None
 
 def sim_ann_p(inputfile, max_iter):
