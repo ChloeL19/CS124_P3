@@ -5,7 +5,6 @@ algorithms.
 from repeated_random import *
 from hill_climbing import *
 from simulated_annealing import *
-from kk import *
 import argparse
 
 if __name__ == "__main__":

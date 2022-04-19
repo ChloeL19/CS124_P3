@@ -5,7 +5,24 @@ things across the other algorithms.
 import numpy as np
 import random
 import sys
-from kk import *
+
+def kk_n(A, verbose=False):
+    '''
+    KK algorithm on normal data representation.
+    '''
+    if verbose:
+        print(A)
+    size = len(A)
+    maxHeap = MaxBinHeap(size + 1)
+    for i in range(size):
+        maxHeap.insert(A[i])
+    maxHeap.maxHeap()
+    while maxHeap.size > 1: 
+        n1 = maxHeap.getMax()
+        n2 = maxHeap.getMax()
+        maxHeap.insert(abs(n1-n2))
+    residue = maxHeap.getMax()
+    return residue
 
 def compute_residue_n(A, S):
     '''
@@ -32,7 +49,7 @@ def pp_conversion(A, G):
     res = []
     for i in range(len(A)):
         if G[i] in seen_gids:
-            Aind = G.index(G[i]) # find first instance of this gid
+            Aind = G.tolist().index(G[i]) # find first instance of this gid
             res[Aind] += A[i]
             res.append(0)
         else:
