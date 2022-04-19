@@ -16,8 +16,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if (args.algorithm == 0):
-        print("not done")
-        res, _ = kk_n(args.inputfile, 25000)
+        res = kk_n(args.inputfile, 25000)
     if (args.algorithm == 1):
         res, _ = normal_rr(args.inputfile, 25000)
     if (args.algorithm == 2):

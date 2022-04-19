@@ -63,6 +63,7 @@ class MaxBinHeap:
     A binary heap implementation that supports retrieving
     maximum elements, insertions, and deletions.
     The binary heap is implemented as an array.
+    Thank you to this source: https://www.geeksforgeeks.org/max-heap-in-python/
     '''
     def __init__(self, maxsize):
         self.maxsize = maxsize
@@ -104,18 +105,19 @@ class MaxBinHeap:
 
     def maxHeapify(self, pos):
  
-        # If the node is a non-leaf node and less
+        # If the node is a non-leaf node and smaller
         # than any of its child
         if not self.isLeaf(pos):
             if (self.Heap[pos] < self.Heap[self.leftChild(pos)] or
-               self.Heap[pos] < self.Heap[self.rightChild(pos)]):
- 
+                self.Heap[pos] < self.Heap[self.rightChild(pos)]):
+  
                 # Swap with the left child and heapify
                 # the left child
-                if self.Heap[self.leftChild(pos)] > self.Heap[self.rightChild(pos)]:
+                if (self.Heap[self.leftChild(pos)] > 
+                    self.Heap[self.rightChild(pos)]):
                     self.swap(pos, self.leftChild(pos))
                     self.maxHeapify(self.leftChild(pos))
- 
+  
                 # Swap with the right child and heapify
                 # the right child
                 else:
@@ -126,14 +128,15 @@ class MaxBinHeap:
         '''
         Insert an element into the heap.
         '''
-        if self.size >= self.maxsize :
+        if self.size >= self.maxsize:
             return
-        self.size+= 1
+        self.size += 1
         self.Heap[self.size] = element
- 
+  
         current = self.size
- 
-        while self.Heap[current] > self.Heap[self.parent(current)]:
+  
+        while (self.Heap[current] > 
+               self.Heap[self.parent(current)]):
             self.swap(current, self.parent(current))
             current = self.parent(current)
 
