@@ -25,7 +25,7 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
         if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
             randsol = randsol1
         else:
-            randsol = None
+            randsol = randsol1 # this is wrong, I'm using placeholder
     return None, None
 
 def sim_ann_p(inputfile, max_iter):
