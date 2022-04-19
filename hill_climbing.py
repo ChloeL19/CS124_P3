@@ -25,7 +25,6 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         randsol2 = randsol.copy()
         tind = np.random.randint(0,size)
         randsol2[tind] *= -1
-        import pdb; pdb.set_trace();
         assert((randsol2 != randsol).any())
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):
