@@ -5,6 +5,7 @@ things across the other algorithms.
 import numpy as np
 import random
 import sys
+from kk import *
 
 def compute_residue_n(A, S):
     '''
@@ -27,14 +28,25 @@ def pp_conversion(A, G):
         - A: list of integers that have been assigned groups
         - G: list of group IDs for each of the integers
     '''
-    res = {}
-    for i in range(len(G)):
-        if G[i] in res.keys():
-            res[G[i]] += A[i]
-            res[i] = 0
+    seen_gids = []
+    res = []
+    for i in range(len(A)):
+        if G[i] in seen_gids:
+            Aind = G.index(G[i]) # find first instance of this gid
+            res[Aind] += A[i]
+            res.append(0)
         else:
-            res[i] = A[i]
-    return res.values
+            res.append(A[i])
+            seen_gids.append(G[i])
+    return res
+
+def compute_residue_p(A, G):
+    '''
+    Compute the residue for a prepartitioned solution 
+    representation.
+    '''
+    standardform = pp_conversion(A,G)
+    return kk_n(standardform)
 
 def getNeighborN(S):
     '''
@@ -56,7 +68,27 @@ def getNeighborP(G):
     in prepartitioned form.
     - G: int list, group IDs for all integers
     '''
-    pass
+    size = len(G)
+    all_indices = set(np.arange(size).tolist())
+    tind = np.random.choice(np.arange(size), size=1, replace=False)
+    other_inds = list(all_indices.difference(set(G[tind])))
+    new_gid = np.random.choice(np.asarray(other_inds))
+    Gn = G.copy() 
+    Gn[tind[0]] = new_gid
+    return Gn
+
+# notes on why prepartitioned better: kk is deterministic
+# partitioning: just run kk, each element has a specific way in
+# which it can be grouped with other elements
+# smallest element never paired up with first element in first iteration?
+# partitioning: group elements beforehand, make it so there are more different
+# groups that we can obtain
+# each element as own partition, the same as kk
+# when put these together, always get strictly more possible results
+# gives more options, then when run randomized algos, more likely to go towards
+# actual optimum
+
+# other notes: should time these and discuss the runtime
 
 class MaxBinHeap:
     '''
@@ -191,3 +223,5 @@ if __name__ == "__main__":
 
     # unit test the conversion from prepartitioned
     print("---------------Unit Testing Prepartition Conversion----------------")
+    print(numarr)
+    print(pp_conversion(numarr, [1,2,2]))

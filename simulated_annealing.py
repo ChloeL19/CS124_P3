@@ -47,6 +47,7 @@ def sim_ann_p(inputfile, max_iter):
     '''
     Simulated annealing with prepartitioned solution representation.
     '''
+    #randsol2 = getNeighborP(randsol)
     return None, None
 
 if __name__ == "__main__":

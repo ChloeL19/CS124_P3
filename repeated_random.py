@@ -28,12 +28,25 @@ def normal_rr(inputfile, max_iter, verbose=False):
             randsol = randsol2
     return compute_residue_n(A, randsol), randsol
 
-def prepartitioned_rr(inputfile, max_iter):
+def prepartitioned_rr(inputfile, max_iter, verbose=False):
     '''
     Repeated random algorithm on prepartitioned representation.
     (i.e. list of group IDs.)
+    Arguments same as above.
     '''
-    return None, None
+    A = np.loadtxt(inputfile)
+    if verbose:
+        print(A)
+    size = A.shape[0]
+    randsol = np.arange(size)
+    np.random.shuffle(randsol)
+    for i in range(max_iter):
+        randsol2 = randsol.copy()
+        np.shuffle(randsol2)
+        if compute_residue_p(A, randsol2) < \
+            compute_residue_p(A, randsol):
+            randsol = randsol2
+    return compute_residue_p(A, randsol), randsol
 
 if __name__ == "__main__":
     # do some testing here

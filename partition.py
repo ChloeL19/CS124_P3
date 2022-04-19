@@ -16,7 +16,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if (args.algorithm == 0):
-        res = kk_n(args.inputfile, 25000)
+        res = kk_n(np.loadtxt(args.inputfile))
     if (args.algorithm == 1):
         res, _ = normal_rr(args.inputfile, 25000)
     if (args.algorithm == 2):
@@ -24,7 +24,6 @@ if __name__ == "__main__":
     if (args.algorithm == 3):
         res, _ = sim_ann_n(args.inputfile, 25000)
     if (args.algorithm == 11):
-        print("not done")
         res, _ = prepartitioned_rr(args.inputfile, 25000)
     if (args.algorithm == 12):
         print("not done")
