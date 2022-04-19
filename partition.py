@@ -34,4 +34,7 @@ if __name__ == "__main__":
     if (args.algorithm == 13):
         print("not done")
         res, _ = sim_ann_p(args.inputfile, 25000)
-    print(int(res))
+    if res is not None:
+        print(int(res))
+    else:
+        print(0)
