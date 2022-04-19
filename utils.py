@@ -94,19 +94,6 @@ def getNeighborP(G):
     Gn[tind[0]] = new_gid
     return Gn
 
-# notes on why prepartitioned better: kk is deterministic
-# partitioning: just run kk, each element has a specific way in
-# which it can be grouped with other elements
-# smallest element never paired up with first element in first iteration?
-# partitioning: group elements beforehand, make it so there are more different
-# groups that we can obtain
-# each element as own partition, the same as kk
-# when put these together, always get strictly more possible results
-# gives more options, then when run randomized algos, more likely to go towards
-# actual optimum
-
-# other notes: should time these and discuss the runtime
-
 class MaxBinHeap:
     '''
     A binary heap implementation that supports retrieving

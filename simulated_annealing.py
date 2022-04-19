@@ -39,6 +39,8 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
         if compute_residue_n(A, randsol) < \
             compute_residue_n(A, randsol2):
             randsol2 = randsol
+        if compute_residue_n(A, randsol2) == 0:
+            break
     # time saver: stop when residue is zero!
     return compute_residue_n(A, randsol2), randsol2
 
@@ -65,6 +67,8 @@ def sim_ann_p(inputfile, max_iter, verbose=False):
         if compute_residue_p(A, randsol) < \
             compute_residue_p(A, randsol2):
             randsol2 = randsol
+        if compute_residue_p(A, randsol2) == 0:
+            break
     # time saver: stop when residue is zero!
     return compute_residue_p(A, randsol2), randsol2
 

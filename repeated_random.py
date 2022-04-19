@@ -26,6 +26,8 @@ def normal_rr(inputfile, max_iter, verbose=False):
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):
             randsol = randsol2
+        if (compute_residue_n(A, randsol) == 0):
+            break
     return compute_residue_n(A, randsol), randsol
 
 def prepartitioned_rr(inputfile, max_iter, verbose=False):
@@ -46,6 +48,8 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
         if compute_residue_p(A, randsol2) < \
             compute_residue_p(A, randsol):
             randsol = randsol2
+        if compute_residue_p(A, randsol):
+            break
     return compute_residue_p(A, randsol), randsol
 
 if __name__ == "__main__":

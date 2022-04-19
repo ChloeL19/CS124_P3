@@ -29,6 +29,8 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         compute_residue_n(A, randsol.tolist())):
             randsol = randsol2.copy()
         # could save time by stopping when reach 0
+        if compute_residue_n(A, randsol) == 0:
+            break
     return compute_residue_n(A, randsol), randsol
 
 def hill_climb_p(inputfile, max_iter, verbose=False):
@@ -49,6 +51,8 @@ def hill_climb_p(inputfile, max_iter, verbose=False):
         compute_residue_p(A, randsol.tolist())):
             randsol = randsol2.copy()
         # could save time by stopping when reach 0
+        if compute_residue_p(A, randsol) == 0:
+            break
     return compute_residue_p(A, randsol), randsol
 
 if __name__ == "__main__":
