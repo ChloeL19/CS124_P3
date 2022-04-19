@@ -28,18 +28,17 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
     randsol = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
     randsol2 = randsol.copy()
     for i in range(max_iter):
-        tind = np.random.randint(0,size)
-        randsol1 = randsol.copy()
-        randsol1[tind] *=-1
+        randsol1 = getNeighborN(randsol)
         if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
-            randsol = randsol1.copy() # confirm!
+            randsol = randsol1 # confirm!
         else:
             randsol = math.exp((-1*compute_residue_n(A, randsol1)\
                 -compute_residue_n(A, randsol))/T(i))
             #randsol = randsol1 # this is wrong, I'm using placeholder
         if compute_residue_n(A, randsol) < \
             compute_residue_n(A, randsol2):
-            randsol2 = randsol.copy()
+            randsol2 = randsol
+    # time saver: stop when residue is zero!
     return compute_residue_n(A, randsol2), randsol2
 
 def sim_ann_p(inputfile, max_iter):

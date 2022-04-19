@@ -33,6 +33,27 @@ def pp_conversion(A, G):
             res[i] = A[i]
     return res.values
 
+def getNeighborN(S):
+    '''
+    Returns the neighbor of a state as defined on this
+    statespace in normal form.
+    - S: a solution represented in normal form
+    '''
+    size = len(S)
+    tind = np.random.choice(np.arange(size), size=2)
+    Sn = S
+    Sn[tind[0]] *= -1
+    if random.random() < 0.5:
+        Sn[tind[1]] *= -1
+    return Sn
+
+def getNeighborP(G):
+    '''
+    Returns the neighbor of a state as defined on this statespace
+    in prepartitioned form.
+    - G: int list, group IDs for all integers
+    '''
+    pass
 
 class MaxBinHeap:
     '''

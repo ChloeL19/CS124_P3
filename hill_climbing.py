@@ -22,13 +22,12 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
     size = A.shape[0]
     randsol = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
     for i in range(max_iter):
-        randsol2 = randsol.copy()
-        tind = np.random.randint(0,size)
-        randsol2[tind] *= -1
+        randsol2 = getNeighborN(randsol)
         assert((randsol2 != randsol).any())
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):
-            randsol = randsol2.copy()
+            randsol = randsol2
+        # could save time by stopping when reach 0
     return compute_residue_n(A, randsol), randsol
 
 def hill_climb_p(inputfile, max_iter):
