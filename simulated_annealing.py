@@ -4,7 +4,15 @@ of integers.
 '''
 import numpy as np
 import argparse
+import math
 from utils import *
+
+def T(iter):
+    '''
+    Temperature function for simulated anealing.
+        - iter: int
+    '''
+    return 10**10(0.8)**(math.floor(iter/300))
 
 def sim_ann_n(inputfile, max_iter, verbose=False):
     '''
@@ -17,16 +25,22 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = randsol2 = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
+    randsol = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
+    randsol2 = randsol.copy()
     for i in range(max_iter):
         tind = np.random.randint(0,size)
-        randsol1 = randsol
+        randsol1 = randsol.copy()
         randsol1[tind] *=-1
         if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
-            randsol = randsol1
+            randsol = randsol1 # confirm!
         else:
-            randsol = randsol1 # this is wrong, I'm using placeholder
-    return None, None
+            randsol = math.exp((-1*compute_residue_n(A, randsol1)\
+                -compute_residue_n(A, randsol))/T(i))
+            #randsol = randsol1 # this is wrong, I'm using placeholder
+        if compute_residue_n(A, randsol) < \
+            compute_residue_n(A, randsol2):
+            randsol2 = randsol
+    return compute_residue_n(A, randsol2), randsol2
 
 def sim_ann_p(inputfile, max_iter):
     '''
