@@ -21,7 +21,7 @@ if __name__ == "__main__":
     if (args.algorithm == 1):
         res, _ = normal_rr(args.inputfile, 25000)
     if (args.algorithm == 2):
-        res, _ = hill_climb_n(args.inputfile, 25000)
+        res, _ = hill_climb_n(args.inputfile, 250000)
     if (args.algorithm == 3):
         print("not done")
         res, _ = sim_ann_n(args.inputfile, 25000)

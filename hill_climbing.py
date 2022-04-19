@@ -27,9 +27,7 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):
             randsol = randsol2
-        else:
-            # chose a different random neighbor of orginal S
-            randsol2 = randsol
+        randsol2 = randsol
     return compute_residue_n(A, randsol), randsol
 
 def hill_climb_p(inputfile, max_iter):

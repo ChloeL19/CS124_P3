@@ -6,13 +6,20 @@ import numpy as np
 import argparse
 from utils import *
 
-def sim_ann_n(inputfile, max_iter):
+def sim_ann_n(inputfile, max_iter, verbose=False):
     '''
     Simulated annealing with normal solution representation.
         - inputfile: string, path in integers to partition
         - max_iter: int, maximum number of iterations for
                     which to run the algorithm. 
     '''
+    A = np.loadtxt(inputfile)
+    if verbose:
+        print(A)
+    size = A.shape[0]
+    randsol = randsol1 = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
+    for i in range(max_iter):
+        pass
     return None, None
 
 def sim_ann_p(inputfile, max_iter):
