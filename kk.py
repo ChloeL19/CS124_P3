@@ -21,7 +21,7 @@ def kk_n(inputfile, max_iter, verbose=False):
         n2 = maxHeap.getMax()
         maxHeap.insert(abs(n1-n2))
     residue = maxHeap.getMax()
-    return None, None
+    return residue
 
 if __name__ == "__main__":
     # unit test the KK algorithm

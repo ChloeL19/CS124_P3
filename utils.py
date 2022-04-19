@@ -14,8 +14,11 @@ def compute_residue_n(A, S):
         - S: list of signs (the "solution")
     '''
     res = 0
-    for (a, s) in zip(A, S):
-        res += a*s
+    try:
+        for (a, s) in zip(A, S):
+            res += a*s
+    except:
+        import pdb; pdb.set_trace();
     return abs(res)
 
 def pp_conversion(A, G):
@@ -41,7 +44,7 @@ def getNeighborN(S):
     '''
     size = len(S)
     tind = np.random.choice(np.arange(size), size=2)
-    Sn = S
+    Sn = S.copy()
     Sn[tind[0]] *= -1
     if random.random() < 0.5:
         Sn[tind[1]] *= -1

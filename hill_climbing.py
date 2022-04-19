@@ -23,6 +23,7 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
     randsol = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
     for i in range(max_iter):
         randsol2 = getNeighborN(randsol)
+        #import pdb; pdb.set_trace();
         assert((randsol2 != randsol).any())
         if (compute_residue_n(A, randsol2.tolist()) < \
         compute_residue_n(A, randsol.tolist())):

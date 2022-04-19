@@ -32,9 +32,11 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
         if compute_residue_n(A, randsol1) < compute_residue_n(A, randsol):
             randsol = randsol1 # confirm!
         else:
-            randsol = math.exp((-1*compute_residue_n(A, randsol1)\
+            prob = math.exp((-1*compute_residue_n(A, randsol1)\
                 -compute_residue_n(A, randsol))/T(i))
-            #randsol = randsol1 # this is wrong, I'm using placeholder
+            if random.random() < prob:
+                randsol = randsol1
+        #import pdb; pdb.set_trace();
         if compute_residue_n(A, randsol) < \
             compute_residue_n(A, randsol2):
             randsol2 = randsol
