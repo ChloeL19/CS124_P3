@@ -31,11 +31,25 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         # could save time by stopping when reach 0
     return compute_residue_n(A, randsol), randsol
 
-def hill_climb_p(inputfile, max_iter):
+def hill_climb_p(inputfile, max_iter, verbose=False):
     '''
     Hill climbing algorithm for solutions in prepartitioned form.
     '''
-    return None, None
+    A = np.loadtxt(inputfile)
+    if verbose:
+        print(A)
+    size = A.shape[0]
+    randsol = np.arange(size)
+    np.random.shuffle(randsol)
+    for i in range(max_iter):
+        randsol2 = getNeighborP(randsol)
+        #Time improvement: remove to get a better time!
+        assert((randsol2 != randsol).any())
+        if (compute_residue_p(A, randsol2.tolist()) < \
+        compute_residue_p(A, randsol.tolist())):
+            randsol = randsol2.copy()
+        # could save time by stopping when reach 0
+    return compute_residue_p(A, randsol), randsol
 
 if __name__ == "__main__":
     # unit testing

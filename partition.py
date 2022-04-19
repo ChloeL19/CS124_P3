@@ -26,10 +26,8 @@ if __name__ == "__main__":
     if (args.algorithm == 11):
         res, _ = prepartitioned_rr(args.inputfile, 25000)
     if (args.algorithm == 12):
-        print("not done")
         res, _ =  hill_climb_p(args.inputfile, 25000)
     if (args.algorithm == 13):
-        print("not done")
         res, _ = sim_ann_p(args.inputfile, 25000)
     if res is not None:
         print(int(res))

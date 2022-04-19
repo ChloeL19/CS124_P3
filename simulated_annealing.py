@@ -36,7 +36,6 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
                 -compute_residue_n(A, randsol))/T(i))
             if random.random() < prob:
                 randsol = randsol1
-        #import pdb; pdb.set_trace();
         if compute_residue_n(A, randsol) < \
             compute_residue_n(A, randsol2):
             randsol2 = randsol
@@ -63,7 +62,6 @@ def sim_ann_p(inputfile, max_iter, verbose=False):
                 -compute_residue_p(A, randsol))/T(i))
             if random.random() < prob:
                 randsol = randsol1
-        #import pdb; pdb.set_trace();
         if compute_residue_p(A, randsol) < \
             compute_residue_p(A, randsol2):
             randsol2 = randsol

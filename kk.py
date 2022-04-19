@@ -15,7 +15,7 @@ def kk_n(A, verbose=False):
     for i in range(size):
         maxHeap.insert(A[i])
     maxHeap.maxHeap()
-    while maxHeap.size > 1: # include max_iter here??
+    while maxHeap.size > 1: 
         n1 = maxHeap.getMax()
         n2 = maxHeap.getMax()
         maxHeap.insert(abs(n1-n2))
