@@ -43,7 +43,7 @@ def getNeighborN(S):
     - S: a solution represented in normal form
     '''
     size = len(S)
-    tind = np.random.choice(np.arange(size), size=2)
+    tind = np.random.choice(np.arange(size), size=2, replace=False)
     Sn = S.copy()
     Sn[tind[0]] *= -1
     if random.random() < 0.5:
