@@ -45,14 +45,12 @@ def hill_climb_p(inputfile, max_iter, verbose=False):
     randsol = np.random.randint(0, size, size=size)
     for i in range(max_iter):
         randsol2 = getNeighborP(randsol)
-        #Time improvement: remove to get a better time!
-        assert((randsol2 != randsol).any())
-        if (compute_residue_p(A, randsol2.tolist()) < \
-        compute_residue_p(A, randsol.tolist())):
-            randsol = randsol2.copy()
-        # could save time by stopping when reach 0
-        if compute_residue_p(A, randsol.tolist()) == 0:
+        rs2_res = compute_residue_p(A, randsol2.tolist())
+        rs_res = compute_residue_p(A, randsol.tolist())
+        if rs_res == 0:
             break
+        if (rs2_res < rs_res):
+            randsol = randsol2.copy()
     return compute_residue_p(A, randsol.tolist())
 
 if __name__ == "__main__":

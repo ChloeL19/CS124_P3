@@ -13,15 +13,27 @@ def kk_n(A, verbose=False):
     if verbose:
         print(A)
     size = len(A)
-    maxHeap = MaxBinHeap(size + 1)
+    fakeHeap = []
     for i in range(size):
-        maxHeap.insert(A[i])
-    maxHeap.maxHeap()
-    while maxHeap.size > 1: 
-        n1 = maxHeap.getMax()
-        n2 = maxHeap.getMax()
-        maxHeap.insert(abs(n1-n2))
-    residue = maxHeap.getMax()
+        fakeHeap.append(A[i])
+    while len(fakeHeap) > 1:
+        n1 = max(fakeHeap)
+        n1index = fakeHeap.index(n1)
+        _ = fakeHeap.pop(n1index)
+        n2 = max(fakeHeap)
+        n2index = fakeHeap.index(n2)
+        _ = fakeHeap.pop(n2index)
+        fakeHeap.append(abs(n1-n2))
+    # maxHeap = MaxBinHeap(size + 1)
+    # for i in range(size):
+    #     maxHeap.insert(A[i])
+    # maxHeap.maxHeap() #redesign heap to exlude this
+    # while maxHeap.size > 1: 
+    #     n1 = maxHeap.getMax()
+    #     n2 = maxHeap.getMax()
+    #     maxHeap.insert(abs(n1-n2))
+    # residue = maxHeap.getMax()
+    residue = max(fakeHeap)
     return residue
 
 def compute_residue_n(A, S):
