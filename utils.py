@@ -32,24 +32,21 @@ def compute_residue_n(A, S):
         - S: list of signs (the "solution")
     '''
     res = 0
-    try:
-        for (a, s) in zip(A, S):
-            res += a*s
-    except:
-        import pdb; pdb.set_trace();
+    for (a, s) in zip(A, S):
+        res += a*s
     return abs(res)
 
 def pp_conversion(A, G):
     '''
     Convert a solution in prepartitioned form to standard form.
         - A: list of integers that have been assigned groups
-        - G: list of group IDs for each of the integers
+        - G: int list, list of group IDs for each of the integers
     '''
     seen_gids = []
     res = []
     for i in range(len(A)):
         if G[i] in seen_gids:
-            Aind = G.tolist().index(G[i]) # find first instance of this gid
+            Aind = G.index(G[i]) # find first instance of this gid
             res[Aind] += A[i]
             res.append(0)
         else:
@@ -61,6 +58,7 @@ def compute_residue_p(A, G):
     '''
     Compute the residue for a prepartitioned solution 
     representation.
+    - G: int list
     '''
     standardform = pp_conversion(A,G)
     return kk_n(standardform)
@@ -83,15 +81,23 @@ def getNeighborP(G):
     '''
     Returns the neighbor of a state as defined on this statespace
     in prepartitioned form.
-    - G: int list, group IDs for all integers
+    - G: numpy array, group IDs for all integers
+
+    Returns a numpy array which represents the neighbor.
     '''
     size = len(G)
-    all_indices = set(np.arange(size).tolist())
-    tind = np.random.choice(np.arange(size), size=1, replace=False)
-    other_inds = list(all_indices.difference(set(G[tind])))
-    new_gid = np.random.choice(np.asarray(other_inds))
-    Gn = G.copy() 
-    Gn[tind[0]] = new_gid
+    Gn = G.copy()
+    inds = np.random.choice(np.arange(size), size=2)
+    while G[inds[0]] == inds[1]:
+        inds = np.random.choice(np.arange(size), size=2)
+    Gn[inds[0]] = inds[1]
+    # possibly taking way too long
+    # all_indices = set(np.arange(size).tolist())
+    # tind = np.random.choice(np.arange(size), size=1, replace=False)
+    # other_inds = list(all_indices.difference(set(G[tind])))
+    # new_gid = np.random.choice(np.asarray(other_inds))
+    # Gn = G.copy() 
+    # Gn[tind[0]] = new_gid
     return Gn
 
 class MaxBinHeap:

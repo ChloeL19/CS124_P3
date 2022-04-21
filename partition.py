@@ -5,6 +5,7 @@ algorithms.
 from repeated_random import *
 from hill_climbing import *
 from simulated_annealing import *
+import time
 import argparse
 
 if __name__ == "__main__":
@@ -15,20 +16,35 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     if (args.algorithm == 0):
+        start_time = time.time()
         res = kk_n(np.loadtxt(args.inputfile))
+        end_time = time.time()
     if (args.algorithm == 1):
-        res, _ = normal_rr(args.inputfile, 25000)
+        start_time = time.time()
+        res = normal_rr(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 2):
-        res, _ = hill_climb_n(args.inputfile, 250000)
+        start_time = time.time()
+        res = hill_climb_n(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 3):
-        res, _ = sim_ann_n(args.inputfile, 25000)
+        start_time = time.time()
+        res = sim_ann_n(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 11):
-        res, _ = prepartitioned_rr(args.inputfile, 25000)
+        start_time = time.time()
+        res = prepartitioned_rr(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 12):
-        res, _ =  hill_climb_p(args.inputfile, 25000)
+        start_time = time.time()
+        res =  hill_climb_p(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 13):
-        res, _ = sim_ann_p(args.inputfile, 25000)
+        start_time = time.time()
+        res = sim_ann_p(args.inputfile, 25000)
+        end_time = time.time()
     if res is not None:
         print(int(res))
+        #print("Elapsed time: {}".format(end_time - start_time))
     else:
         print(0)

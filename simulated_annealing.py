@@ -42,7 +42,7 @@ def sim_ann_n(inputfile, max_iter, verbose=False):
         if compute_residue_n(A, randsol2) == 0:
             break
     # time saver: stop when residue is zero!
-    return compute_residue_n(A, randsol2), randsol2
+    return compute_residue_n(A, randsol2)
 
 def sim_ann_p(inputfile, max_iter, verbose=False):
     '''
@@ -52,25 +52,28 @@ def sim_ann_p(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = np.arange(size)
-    np.random.shuffle(randsol)
+    randsol = np.random.randint(0,size, size=size)
     randsol2 = randsol.copy()
     for i in range(max_iter):
         randsol1 = getNeighborP(randsol)
-        if compute_residue_p(A, randsol1) < compute_residue_p(A, randsol):
+        rs_res = compute_residue_p(A, randsol.tolist())
+        rs1_res = compute_residue_p(A, randsol1.tolist())
+        rs2_res = compute_residue_p(A, randsol2.tolist())
+        if rs1_res < rs_res:
             randsol = randsol1 # confirm!
         else:
-            prob = math.exp((-1*compute_residue_p(A, randsol1)\
-                -compute_residue_p(A, randsol))/T(i))
+            prob = math.exp((-1*rs1_res - rs_res)/T(i))
             if random.random() < prob:
                 randsol = randsol1
-        if compute_residue_p(A, randsol) < \
-            compute_residue_p(A, randsol2):
+        # recompute residue because randsol might change
+        rs_res = compute_residue_p(A, randsol.tolist())
+        if rs_res < rs2_res:
             randsol2 = randsol
-        if compute_residue_p(A, randsol2) == 0:
+        rs2_res = compute_residue_p(A, randsol2.tolist())
+        if rs2_res == 0:
             break
     # time saver: stop when residue is zero!
-    return compute_residue_p(A, randsol2), randsol2
+    return rs2_res
 
 if __name__ == "__main__":
     # unit testing

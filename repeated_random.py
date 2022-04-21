@@ -28,7 +28,7 @@ def normal_rr(inputfile, max_iter, verbose=False):
             randsol = randsol2
         if (compute_residue_n(A, randsol) == 0):
             break
-    return compute_residue_n(A, randsol), randsol
+    return compute_residue_n(A, randsol)
 
 def prepartitioned_rr(inputfile, max_iter, verbose=False):
     '''
@@ -40,17 +40,15 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = np.arange(size)
-    np.random.shuffle(randsol)
+    randsol = np.random.randint(0, size, size=size)
     for i in range(max_iter):
-        randsol2 = randsol.copy()
-        np.random.shuffle(randsol2)
-        if compute_residue_p(A, randsol2) < \
-            compute_residue_p(A, randsol):
+        randsol2 = np.random.randint(0, size, size=size)
+        if compute_residue_p(A, randsol2.tolist()) < \
+            compute_residue_p(A, randsol.tolist()):
             randsol = randsol2
-        if compute_residue_p(A, randsol):
+        if compute_residue_p(A, randsol.tolist()):
             break
-    return compute_residue_p(A, randsol), randsol
+    return compute_residue_p(A, randsol.tolist())
 
 if __name__ == "__main__":
     # do some testing here

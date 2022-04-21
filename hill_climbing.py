@@ -4,6 +4,7 @@ normal and prepartitioned solution representations.
 '''
 import numpy as np
 import argparse
+import time
 from utils import *
 
 def hill_climb_n(inputfile, max_iter, verbose=False):
@@ -31,7 +32,7 @@ def hill_climb_n(inputfile, max_iter, verbose=False):
         # could save time by stopping when reach 0
         if compute_residue_n(A, randsol) == 0:
             break
-    return compute_residue_n(A, randsol), randsol
+    return compute_residue_n(A, randsol)
 
 def hill_climb_p(inputfile, max_iter, verbose=False):
     '''
@@ -41,8 +42,7 @@ def hill_climb_p(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = np.arange(size)
-    np.random.shuffle(randsol)
+    randsol = np.random.randint(0, size, size=size)
     for i in range(max_iter):
         randsol2 = getNeighborP(randsol)
         #Time improvement: remove to get a better time!
@@ -51,9 +51,9 @@ def hill_climb_p(inputfile, max_iter, verbose=False):
         compute_residue_p(A, randsol.tolist())):
             randsol = randsol2.copy()
         # could save time by stopping when reach 0
-        if compute_residue_p(A, randsol) == 0:
+        if compute_residue_p(A, randsol.tolist()) == 0:
             break
-    return compute_residue_p(A, randsol), randsol
+    return compute_residue_p(A, randsol.tolist())
 
 if __name__ == "__main__":
     # unit testing
