@@ -47,7 +47,7 @@ if __name__ == "__main__":
         end_time = time.time()
     if res is not None:
         print(int(res))
-        print("Elapsed time: {}".format(end_time - start_time))
+        #print("Elapsed time: {}".format(end_time - start_time))
     else:
         print("eh")
 
