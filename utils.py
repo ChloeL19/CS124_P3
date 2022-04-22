@@ -16,7 +16,7 @@ def pp_conversion(A, G):
     for i in range(len(A)):
         res.append(0)
     for i in range(len(A)):
-        res[G[i]] += A[i]
+        res[G[i]-1] += A[i]
 
     # # way too slow, but only version that is correct:
     # seen_gids = []
@@ -152,13 +152,6 @@ def getNeighborP(G):
     while G[inds[0]] == inds[1]:
         inds = np.random.choice(np.arange(size), size=2)
     Gn[inds[0]] = inds[1]
-    # possibly taking way too long
-    # all_indices = set(np.arange(size).tolist())
-    # tind = np.random.choice(np.arange(size), size=1, replace=False)
-    # other_inds = list(all_indices.difference(set(G[tind])))
-    # new_gid = np.random.choice(np.asarray(other_inds))
-    # Gn = G.copy() 
-    # Gn[tind[0]] = new_gid
     return Gn
 
 class MaxBinHeap:
