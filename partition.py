@@ -15,26 +15,26 @@ if __name__ == "__main__":
     parser.add_argument('inputfile')
     args = parser.parse_args()
     res=None
-    if (args.algorithm == 0):pass
-        #start_time = time.time()
-        #res = kk_n(np.loadtxt(args.inputfile))
-        #end_time = time.time()
-    if (args.algorithm == 1):pass
-        #start_time = time.time()
-        #res = normal_rr(args.inputfile, 25000)
-        #end_time = time.time()
-    if (args.algorithm == 2):pass
-        #start_time = time.time()
-        #res = hill_climb_n(args.inputfile, 25000)
-        #end_time = time.time()
-    if (args.algorithm == 3):pass
-        #start_time = time.time()
-        #res = sim_ann_n(args.inputfile, 25000)
-        #end_time = time.time()
-    if (args.algorithm == 11): pass
-        #start_time = time.time()
-        #res = prepartitioned_rr(args.inputfile, 25000)
-        #end_time = time.time()
+    if (args.algorithm == 0): #pass
+        start_time = time.time()
+        res = kk_n(np.loadtxt(args.inputfile))
+        end_time = time.time()
+    if (args.algorithm == 1): #pass
+        start_time = time.time()
+        res = normal_rr(args.inputfile, 25000)
+        end_time = time.time()
+    if (args.algorithm == 2): #pass
+        start_time = time.time()
+        res = hill_climb_n(args.inputfile, 25000)
+        end_time = time.time()
+    if (args.algorithm == 3): #pass
+        start_time = time.time()
+        res = sim_ann_n(args.inputfile, 25000)
+        end_time = time.time()
+    if (args.algorithm == 11): #pass
+        start_time = time.time()
+        res = prepartitioned_rr(args.inputfile, 25000)
+        end_time = time.time()
     if (args.algorithm == 12): 
         #res = None
         start_time = time.time()
