@@ -12,23 +12,23 @@ def pp_conversion(A, G):
         - A: list of integers that have been assigned groups
         - G: int list, list of group IDs for each of the integers
     '''
-    # res = []
-    # for i in range(len(A)):
-    #     res.append(0)
-    # for i in range(len(A)):
-    #     res[G[i]-1] += A[i]
-
-    # # way too slow, but only version that is correct:
-    seen_gids = []
     res = []
     for i in range(len(A)):
-        if G[i] in seen_gids:
-            Aind = G.index(G[i]) # find first instance of this gid
-            res[Aind] += A[i]
-            res.append(0)
-        else:
-            res.append(A[i])
-            seen_gids.append(G[i])
+        res.append(0)
+    for i in range(len(A)):
+        res[G[i]-1] += A[i]
+
+    # # way too slow, but only version that is correct:
+    # seen_gids = []
+    # res = []
+    # for i in range(len(A)):
+    #     if G[i] in seen_gids:
+    #         Aind = G.index(G[i]) # find first instance of this gid
+    #         res[Aind] += A[i]
+    #         res.append(0)
+    #     else:
+    #         res.append(A[i])
+    #         seen_gids.append(G[i])
     return res
 
 def fake_insert(lst, elem):
@@ -47,7 +47,7 @@ def fake_insert(lst, elem):
             lst.append(elem)
             break
         if (mid == 0 and lst[mid] < elem):
-            lst.insert(0, elem)
+            lst.insert(0, elem) # problem
             break
         if (elem > lst[mid] and elem < lst[mid-1]):
             lst.insert(mid, elem)
@@ -64,7 +64,7 @@ def kk_n(A, verbose=False):
     if verbose:
         print(A)
     if not isinstance(A, list):
-        fakeHeap = A.tolist()# careful
+        fakeHeap = A.tolist()# careful, don't do this
     else:
         fakeHeap = A
     fakeHeap.sort(reverse=True)
