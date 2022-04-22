@@ -23,8 +23,8 @@ def normal_rr(inputfile, max_iter, verbose=False):
     randsol = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
     for i in range(max_iter):
         randsol2 = np.asarray([1 if random.random() < 0.5 else -1 for i in range(size)])
-        if (compute_residue_n(A, randsol2.tolist()) < \
-        compute_residue_n(A, randsol.tolist())):
+        if (compute_residue_n(A, randsol2) < \
+        compute_residue_n(A, randsol)):
             randsol = randsol2
         if (compute_residue_n(A, randsol) == 0):
             break
@@ -43,12 +43,12 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
     randsol = np.random.randint(1, size+1, size=size)
     for i in range(max_iter):
         randsol2 = np.random.randint(1, size+1, size=size)
-        if compute_residue_p(A, randsol2.tolist()) < \
-            compute_residue_p(A, randsol.tolist()):
+        if compute_residue_p(A, randsol2) < \
+            compute_residue_p(A, randsol):
             randsol = randsol2
-        if compute_residue_p(A, randsol.tolist()) == 0:
+        if compute_residue_p(A, randsol) == 0:
             break
-    return compute_residue_p(A, randsol.tolist())
+    return compute_residue_p(A, randsol)
 
 if __name__ == "__main__":
     # do some testing here

@@ -35,16 +35,14 @@ if __name__ == "__main__":
         start_time = time.time()
         res = prepartitioned_rr(args.inputfile, 25000)
         end_time = time.time()
-    if (args.algorithm == 12): pass
-        #res = None
-        # start_time = time.time()
-        # res =  hill_climb_p(args.inputfile, 25000)
-        # end_time = time.time()
-    if (args.algorithm == 13): pass
-        #res = None
-        # start_time = time.time()
-        # res = sim_ann_p(args.inputfile, 25000)
-        # end_time = time.time()
+    if (args.algorithm == 12): 
+        start_time = time.time()
+        res =  hill_climb_p(args.inputfile, 25000)
+        end_time = time.time()
+    if (args.algorithm == 13): 
+        start_time = time.time()
+        res = sim_ann_p(args.inputfile, 25000)
+        end_time = time.time()
     if res is not None:
         print(int(res))
         #print("Elapsed time: {}".format(end_time - start_time))

@@ -56,9 +56,9 @@ def sim_ann_p(inputfile, max_iter, verbose=False):
     randsol2 = randsol.copy()
     for i in range(max_iter):
         randsol1 = getNeighborP(randsol)
-        rs_res = compute_residue_p(A, randsol.tolist())
-        rs1_res = compute_residue_p(A, randsol1.tolist())
-        rs2_res = compute_residue_p(A, randsol2.tolist())
+        rs_res = compute_residue_p(A, randsol)
+        rs1_res = compute_residue_p(A, randsol1)
+        rs2_res = compute_residue_p(A, randsol2)
         if rs1_res < rs_res:
             randsol = randsol1 # confirm!
         else:
@@ -66,10 +66,10 @@ def sim_ann_p(inputfile, max_iter, verbose=False):
             if random.random() < prob:
                 randsol = randsol1
         # recompute residue because randsol might change
-        rs_res = compute_residue_p(A, randsol.tolist())
+        rs_res = compute_residue_p(A, randsol)
         if rs_res < rs2_res:
             randsol2 = randsol
-        rs2_res = compute_residue_p(A, randsol2.tolist())
+        rs2_res = compute_residue_p(A, randsol2)
         if rs2_res == 0:
             break
     # time saver: stop when residue is zero!
