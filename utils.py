@@ -18,7 +18,7 @@ def pp_conversion(A, G):
     for i in range(len(A)):
         res[G[i]-1] += A[i]
 
-    # # way too slow, but only version that is correct:
+    # # way too slow
     # seen_gids = []
     # res = []
     # for i in range(len(A)):
@@ -61,13 +61,38 @@ def kk_n(A, verbose=False):
     '''
     KK algorithm on normal data representation.
     '''
-    # simples possible: just sort
+    #simplest possible: just sort
+    islst = isinstance(A, list)
+    if verbose:
+        print(A)
+    if islst:
+        A.sort()
+    else:
+        A.sort(kind="mergesort")
+    while True:
+        try:
+            if islst:
+                A.sort()
+                max0 = A.pop(-1)
+                max1 = A.pop(-1)
+                A.append(abs(max0 - max1))
+            else:
+                A.sort(kind="mergesort")
+                max0, max1 = A[-1], A[-2]
+                A[-1], A[-2] = 0, 0
+                A[-2] = abs(max0 - max1)
+        except:
+            break
+    return A[-1]
+
+    # # proven correct:
     # if verbose:
     #     print(A)
-    # if isinstance(A, list):
-    #     A.sort(reverse=True)
+    # if not isinstance(A, list):
+    #     fakeHeap = A.tolist()# careful, don't do this
     # else:
-
+    #     fakeHeap = A
+    # fakeHeap.sort(reverse=True)
     # lcounter = len(fakeHeap)
     # while lcounter > 1:
     #     max0 = fakeHeap.pop(0)
@@ -76,23 +101,6 @@ def kk_n(A, verbose=False):
     #     fake_insert(fakeHeap, abs(max0 - max1))
     #     lcounter += 1
     # return fakeHeap[0]
-
-    # proven correct:
-    if verbose:
-        print(A)
-    if not isinstance(A, list):
-        fakeHeap = A.tolist()# careful, don't do this
-    else:
-        fakeHeap = A
-    fakeHeap.sort(reverse=True)
-    lcounter = len(fakeHeap)
-    while lcounter > 1:
-        max0 = fakeHeap.pop(0)
-        max1 = fakeHeap.pop(0)
-        lcounter -= 2
-        fake_insert(fakeHeap, abs(max0 - max1))
-        lcounter += 1
-    return fakeHeap[0]
 
     # too slow
     # for i in range(size):
@@ -153,7 +161,7 @@ def getNeighborN(S):
     '''
     size = len(S)
     tind = np.random.choice(np.arange(size), size=2, replace=False)
-    Sn = S.copy()
+    Sn = S.copy() # TIME: do I need to do this??
     Sn[tind[0]] *= -1
     if random.random() < 0.5:
         Sn[tind[1]] *= -1
@@ -168,7 +176,7 @@ def getNeighborP(G):
     Returns a numpy array which represents the neighbor.
     '''
     size = len(G)
-    Gn = G.copy()
+    Gn = G.copy() # TIME: do I need to do this?
     inds = np.random.choice(np.arange(size), size=2)
     while G[inds[0]] == inds[1]:
         inds = np.random.choice(np.arange(size), size=2)
