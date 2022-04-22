@@ -39,8 +39,9 @@ def fake_insert(lst, elem):
     hi = len(lst)
     while lo <= hi:
         mid = (hi + lo)//2
-        #print(mid)
-        #import pdb; pdb.set_trace();
+        if lst == []:
+            lst.append(elem)
+            break
         if (mid == len(lst)-1 and lst[mid] > elem):
             lst.append(elem)
             break
@@ -54,7 +55,6 @@ def fake_insert(lst, elem):
             hi = mid
         else:
             lo = mid
-    #print("finished the binary search")
 
 def kk_n(A, verbose=False):
     '''
@@ -68,14 +68,13 @@ def kk_n(A, verbose=False):
         fakeHeap = A
     fakeHeap.sort(reverse=True)
     lcounter = len(fakeHeap)
-    while lcounter > 2:
-        #print(lcounter)
+    while lcounter > 1:
         max0 = fakeHeap.pop(0)
         max1 = fakeHeap.pop(0)
         lcounter -= 2
         fake_insert(fakeHeap, abs(max0 - max1))
         lcounter += 1
-    #print(fakeHeap)
+
     # too slow
     # for i in range(size):
     #     fakeHeap.append(A[i])
@@ -98,9 +97,6 @@ def kk_n(A, verbose=False):
     #     n2 = maxHeap.getMax()
     #     maxHeap.insert(abs(n1-n2))
     # residue = maxHeap.getMax()
-
-    # improvement; sort, and then insert such that
-    # it remains sorted with binary stuff
 
     return fakeHeap[0]
 
@@ -312,3 +308,9 @@ if __name__ == "__main__":
     print(abs(max1 - max2))
     fake_insert(test, abs(max1 - max2))
     print(test)
+
+    print("---------------Unit Testing Fake Insert----------------")
+    test = [10,8,7,6,5]
+    res = kk_n(test)
+    print(test)
+    print(res)
