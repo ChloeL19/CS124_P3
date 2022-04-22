@@ -68,7 +68,7 @@ def kk_n(A, verbose=False):
         fakeHeap = A
     fakeHeap.sort(reverse=True)
     lcounter = len(fakeHeap)
-    while lcounter > 2:
+    while lcounter > 1:
         #print(lcounter)
         max0 = fakeHeap.pop(0)
         max1 = fakeHeap.pop(0)
