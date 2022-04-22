@@ -6,24 +6,56 @@ import numpy as np
 import random
 import sys
 
+def fake_insert(lst, elem):
+    '''
+    Maintain order of lst while inserting elem.
+    Return that list.
+    '''
+    lo = 0
+    hi = len(lst)
+    while lo <= hi:
+        mid = (hi + lo)//2 + 1
+        if lst[mid] == elem:
+            lst.insert(mid, elem)
+            break
+        elif lst[mid] < elem:
+            lo = mid
+        else:
+            hi = mid
+    lst.insert(mid, elem)
+
 def kk_n(A, verbose=False):
     '''
     KK algorithm on normal data representation.
     '''
     if verbose:
         print(A)
-    size = len(A)
-    fakeHeap = []
-    for i in range(size):
-        fakeHeap.append(A[i])
-    while len(fakeHeap) > 1:
-        n1 = max(fakeHeap)
-        n1index = fakeHeap.index(n1)
-        _ = fakeHeap.pop(n1index)
-        n2 = max(fakeHeap)
-        n2index = fakeHeap.index(n2)
-        _ = fakeHeap.pop(n2index)
-        fakeHeap.append(abs(n1-n2))
+    if not isinstance(A, list):
+        fakeHeap = A.tolist()
+    else:
+        fakeHeap = A
+    fakeHeap.sort()
+    lcounter = len(fakeHeap)
+    while lcounter > 1:
+        max0 = fakeHeap.pop(0)
+        max1 = fakeHeap.pop(1)
+        lcounter -= 2
+        fake_insert(fakeHeap, abs(max0 - max1))
+        lcounter += 1
+
+    # too slow
+    # for i in range(size):
+    #     fakeHeap.append(A[i])
+    # while len(fakeHeap) > 1:
+    #     n1 = max(fakeHeap)
+    #     n1index = fakeHeap.index(n1)
+    #     _ = fakeHeap.pop(n1index)
+    #     n2 = max(fakeHeap)
+    #     n2index = fakeHeap.index(n2)
+    #     _ = fakeHeap.pop(n2index)
+    #     fakeHeap.append(abs(n1-n2))
+    # residue = max(fakeHeap)
+
     # maxHeap = MaxBinHeap(size + 1)
     # for i in range(size):
     #     maxHeap.insert(A[i])
@@ -33,8 +65,11 @@ def kk_n(A, verbose=False):
     #     n2 = maxHeap.getMax()
     #     maxHeap.insert(abs(n1-n2))
     # residue = maxHeap.getMax()
-    residue = max(fakeHeap)
-    return residue
+
+    # improvement; sort, and then insert such that
+    # it remains sorted with binary stuff
+
+    return sum(fakeHeap)
 
 def compute_residue_n(A, S):
     '''
@@ -54,16 +89,22 @@ def pp_conversion(A, G):
         - A: list of integers that have been assigned groups
         - G: int list, list of group IDs for each of the integers
     '''
-    seen_gids = []
     res = []
     for i in range(len(A)):
-        if G[i] in seen_gids:
-            Aind = G.index(G[i]) # find first instance of this gid
-            res[Aind] += A[i]
-            res.append(0)
-        else:
-            res.append(A[i])
-            seen_gids.append(G[i])
+        res.append(0)
+    for i in range(len(A)):
+        res[G[i]] += A[i]
+    # way too slow:
+    # seen_gids = []
+    # res = []
+    # for i in range(len(A)):
+    #     if G[i] in seen_gids:
+    #         Aind = G.index(G[i]) # find first instance of this gid
+    #         res[Aind] += A[i]
+    #         res.append(0)
+    #     else:
+    #         res.append(A[i])
+    #         seen_gids.append(G[i])
     return res
 
 def compute_residue_p(A, G):
