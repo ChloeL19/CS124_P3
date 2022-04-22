@@ -40,9 +40,9 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
     if verbose:
         print(A)
     size = A.shape[0]
-    randsol = np.random.randint(0, size, size=size)
+    randsol = np.random.randint(1, size+1, size=size)
     for i in range(max_iter):
-        randsol2 = np.random.randint(0, size, size=size)
+        randsol2 = np.random.randint(1, size+1, size=size)
         if compute_residue_p(A, randsol2.tolist()) < \
             compute_residue_p(A, randsol.tolist()):
             randsol = randsol2
