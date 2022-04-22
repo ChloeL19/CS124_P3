@@ -36,9 +36,10 @@ if __name__ == "__main__":
         res = prepartitioned_rr(args.inputfile, 25000)
         end_time = time.time()
     if (args.algorithm == 12):
-        start_time = time.time()
-        res =  hill_climb_p(args.inputfile, 25000)
-        end_time = time.time()
+        res = None
+        # start_time = time.time()
+        # res =  hill_climb_p(args.inputfile, 25000)
+        # end_time = time.time()
     if (args.algorithm == 13):
         res = None
         # start_time = time.time()

@@ -14,15 +14,23 @@ def fake_insert(lst, elem):
     lo = 0
     hi = len(lst)
     while lo <= hi:
-        mid = (hi + lo)//2 + 1
-        if lst[mid] == elem:
+        mid = (hi + lo)//2
+        #print(mid)
+        #import pdb; pdb.set_trace();
+        if (mid == len(lst)-1 and lst[mid] > elem):
+            lst.append(elem)
+            break
+        if (mid == 0 and lst[mid] < elem):
+            lst.insert(0, elem)
+            break
+        if (elem > lst[mid] and elem < lst[mid-1]):
             lst.insert(mid, elem)
             break
         elif lst[mid] < elem:
-            lo = mid
-        else:
             hi = mid
-    lst.insert(mid, elem)
+        else:
+            lo = mid
+    #print("finished the binary search")
 
 def kk_n(A, verbose=False):
     '''
@@ -34,9 +42,10 @@ def kk_n(A, verbose=False):
         fakeHeap = A.tolist()
     else:
         fakeHeap = A
-    fakeHeap.sort()
+    fakeHeap.sort(reverse=True)
     lcounter = len(fakeHeap)
-    while lcounter > 1:
+    while lcounter > 2:
+        #print(lcounter)
         max0 = fakeHeap.pop(0)
         max1 = fakeHeap.pop(1)
         lcounter -= 2
@@ -114,7 +123,9 @@ def compute_residue_p(A, G):
     - G: int list
     '''
     standardform = pp_conversion(A,G)
-    return kk_n(standardform)
+    res = kk_n(standardform)
+    print("computed res: {}".format(res))
+    return res
 
 def getNeighborN(S):
     '''
