@@ -46,7 +46,7 @@ def prepartitioned_rr(inputfile, max_iter, verbose=False):
         if compute_residue_p(A, randsol2.tolist()) < \
             compute_residue_p(A, randsol.tolist()):
             randsol = randsol2
-        if compute_residue_p(A, randsol.tolist()):
+        if compute_residue_p(A, randsol.tolist()) == 0:
             break
     return compute_residue_p(A, randsol.tolist())
 

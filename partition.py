@@ -14,7 +14,7 @@ if __name__ == "__main__":
     parser.add_argument('algorithm', type=int)
     parser.add_argument('inputfile')
     args = parser.parse_args()
-    
+    res=None
     if (args.algorithm == 0):
         start_time = time.time()
         res = kk_n(np.loadtxt(args.inputfile))
@@ -35,16 +35,16 @@ if __name__ == "__main__":
         start_time = time.time()
         res = prepartitioned_rr(args.inputfile, 25000)
         end_time = time.time()
-    if (args.algorithm == 12):
-        res = None
-        #start_time = time.time()
-        #res =  hill_climb_p(args.inputfile, 25000)
-        #end_time = time.time()
-    if (args.algorithm == 13):
-        res = None
-        #start_time = time.time()
-        #res = sim_ann_p(args.inputfile, 25000)
-        #end_time = time.time()
+    if (args.algorithm == 12): pass
+        #res = None
+        # start_time = time.time()
+        # res =  hill_climb_p(args.inputfile, 25000)
+        # end_time = time.time()
+    if (args.algorithm == 13): pass
+        #res = None
+        # start_time = time.time()
+        # res = sim_ann_p(args.inputfile, 25000)
+        # end_time = time.time()
     if res is not None:
         print(int(res))
         #print("Elapsed time: {}".format(end_time - start_time))
