@@ -62,45 +62,45 @@ def kk_n(A, verbose=False):
     KK algorithm on normal data representation.
     '''
     #simplest possible: just sort
-    islst = isinstance(A, list)
-    if verbose:
-        print(A)
-    if islst:
-        A.sort()
-    else:
-        A.sort(kind="mergesort")
-    while True:
-        try:
-            if islst:
-                A.sort()
-                max0 = A.pop(-1)
-                max1 = A.pop(-1)
-                A.append(abs(max0 - max1))
-            else:
-                A.sort(kind="mergesort")
-                max0, max1 = A[-1], A[-2]
-                A[-1], A[-2] = 0, 0
-                A[-2] = abs(max0 - max1)
-        except:
-            break
-    return A[-1]
-
-    # # proven correct:
+    # islst = isinstance(A, list)
     # if verbose:
     #     print(A)
-    # if not isinstance(A, list):
-    #     fakeHeap = A.tolist()# careful, don't do this
+    # if islst:
+    #     A.sort()
     # else:
-    #     fakeHeap = A
-    # fakeHeap.sort(reverse=True)
-    # lcounter = len(fakeHeap)
-    # while lcounter > 1:
-    #     max0 = fakeHeap.pop(0)
-    #     max1 = fakeHeap.pop(0)
-    #     lcounter -= 2
-    #     fake_insert(fakeHeap, abs(max0 - max1))
-    #     lcounter += 1
-    # return fakeHeap[0]
+    #     A.sort(kind="mergesort")
+    # while True:
+    #     try:
+    #         if islst:
+    #             A.sort()
+    #             max0 = A.pop(-1)
+    #             max1 = A.pop(-1)
+    #             A.append(abs(max0 - max1))
+    #         else:
+    #             A.sort(kind="mergesort")
+    #             max0, max1 = A[-1], A[-2]
+    #             A[-1], A[-2] = 0, 0
+    #             A[-2] = abs(max0 - max1)
+    #     except:
+    #         break
+    # return A[-1]
+
+    # # proven correct:
+    if verbose:
+        print(A)
+    if not isinstance(A, list):
+        fakeHeap = A.tolist()# careful, don't do this
+    else:
+        fakeHeap = A
+    fakeHeap.sort(reverse=True)
+    lcounter = len(fakeHeap)
+    while lcounter > 1:
+        max0 = fakeHeap.pop(0)
+        max1 = fakeHeap.pop(0)
+        lcounter -= 2
+        fake_insert(fakeHeap, abs(max0 - max1))
+        lcounter += 1
+    return fakeHeap[0]
 
     # too slow
     # for i in range(size):
