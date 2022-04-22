@@ -69,13 +69,13 @@ def kk_n(A, verbose=False):
     fakeHeap.sort(reverse=True)
     lcounter = len(fakeHeap)
     while lcounter > 2:
-        print(lcounter)
+        #print(lcounter)
         max0 = fakeHeap.pop(0)
         max1 = fakeHeap.pop(0)
         lcounter -= 2
         fake_insert(fakeHeap, abs(max0 - max1))
         lcounter += 1
-    print(fakeHeap)
+    #print(fakeHeap)
     # too slow
     # for i in range(size):
     #     fakeHeap.append(A[i])
