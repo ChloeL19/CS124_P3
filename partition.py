@@ -47,47 +47,46 @@ if __name__ == "__main__":
         end_time = time.time()
     if res is not None:
         print(int(res))
-        #print("Elapsed time: {}".format(end_time - start_time))
+        print("Elapsed time: {}".format(end_time - start_time))
     else:
         print("eh")
-'''
-    timer = 0
-    ## Experiment Code
-    ## CODE TO HELP WITH REPEATED INSTANCES + FINDING RUNTIME, COMMENT OUT WHEN DONE EXPERIMENTING
-    for i in range(2,51):
-        inputfile = './data/instance' + str(i) + '.txt'
-        if (args.algorithm == 0):
-            start_time = time.time()
-            res = kk_n(np.loadtxt(inputfile))
-            timer += time.time() - start_time
-        if (args.algorithm == 1):
-            start_time = time.time()
-            res = normal_rr(inputfile, 25000)
-            timer += time.time() - start_time
-        if (args.algorithm == 2):
-            start_time = time.time()
-            res = hill_climb_n(inputfile, 250000)
-            timer += time.time() - start_time
-        if (args.algorithm == 3):
-            start_time = time.time()
-            res = sim_ann_n(inputfile, 25000)
-            timer += time.time() - start_time
-        if (args.algorithm == 11):
-            start_time = time.time()
-            res = prepartitioned_rr(inputfile, 25000)
-            timer += time.time() - start_time
-        if (args.algorithm == 12):
-            start_time = time.time()
-            res =  hill_climb_p(inputfile, 25000)
-            timer += time.time() - start_time
-        if (args.algorithm == 13):
-            start_time = time.time()
-            res = sim_ann_p(inputfile, 25000)
-            timer += time.time() - start_time
-        if res is not None:
-            print(int(res))
-        else:
-            print(0)
 
-    print("Average Run Time:" + str(timer/50))
-'''
+    # timer = end_time - start_time
+    # ## Experiment Code
+    # ## CODE TO HELP WITH REPEATED INSTANCES + FINDING RUNTIME, COMMENT OUT WHEN DONE EXPERIMENTING
+    # for i in range(28,51):
+    #     inputfile = './data/instance' + str(i) + '.txt'
+    #     if (args.algorithm == 0):
+    #         start_time = time.time()
+    #         res = kk_n(np.loadtxt(inputfile))
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 1):
+    #         start_time = time.time()
+    #         res = normal_rr(inputfile, 25000)
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 2):
+    #         start_time = time.time()
+    #         res = hill_climb_n(inputfile, 250000)
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 3):
+    #         start_time = time.time()
+    #         res = sim_ann_n(inputfile, 25000)
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 11):
+    #         start_time = time.time()
+    #         res = prepartitioned_rr(inputfile, 25000)
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 12):
+    #         start_time = time.time()
+    #         res =  hill_climb_p(inputfile, 25000)
+    #         timer += time.time() - start_time
+    #     if (args.algorithm == 13):
+    #         start_time = time.time()
+    #         res = sim_ann_p(inputfile, 25000)
+    #         timer += time.time() - start_time
+    #     if res is not None:
+    #         print(int(res))
+    #     else:
+    #         print(0)
+
+    # print("Average Run Time:" + str(timer/50))

@@ -61,14 +61,13 @@ def kk_n(A, verbose=False):
     '''
     KK algorithm on normal data representation.
     '''
-    # proven correct:
+    # simples possible: just sort
     # if verbose:
     #     print(A)
-    # if not isinstance(A, list):
-    #     fakeHeap = A.tolist()# careful, don't do this
+    # if isinstance(A, list):
+    #     A.sort(reverse=True)
     # else:
-    #     fakeHeap = A
-    # fakeHeap.sort(reverse=True)
+
     # lcounter = len(fakeHeap)
     # while lcounter > 1:
     #     max0 = fakeHeap.pop(0)
@@ -77,6 +76,23 @@ def kk_n(A, verbose=False):
     #     fake_insert(fakeHeap, abs(max0 - max1))
     #     lcounter += 1
     # return fakeHeap[0]
+
+    # proven correct:
+    if verbose:
+        print(A)
+    if not isinstance(A, list):
+        fakeHeap = A.tolist()# careful, don't do this
+    else:
+        fakeHeap = A
+    fakeHeap.sort(reverse=True)
+    lcounter = len(fakeHeap)
+    while lcounter > 1:
+        max0 = fakeHeap.pop(0)
+        max1 = fakeHeap.pop(0)
+        lcounter -= 2
+        fake_insert(fakeHeap, abs(max0 - max1))
+        lcounter += 1
+    return fakeHeap[0]
 
     # too slow
     # for i in range(size):
@@ -92,19 +108,19 @@ def kk_n(A, verbose=False):
     # residue = max(fakeHeap)
 
     # heap attempt
-    A = np.asarray(A)
-    size = A.shape[0]
-    maxHeap = MaxBinHeap(size + 1)
-    for i in range(size):
-        maxHeap.insert(A[i])
-    maxHeap.maxHeap() #redesign heap to exlude this
-    while maxHeap.size > 1: 
-        n1 = maxHeap.getMax()
-        n2 = maxHeap.getMax()
-        maxHeap.insert(abs(n1-n2))
-    residue = maxHeap.getMax()
+    # A = np.asarray(A)
+    # size = A.shape[0]
+    # maxHeap = MaxBinHeap(size + 1)
+    # for i in range(size):
+    #     maxHeap.insert(A[i])
+    # maxHeap.maxHeap() #redesign heap to exlude this
+    # while maxHeap.size > 1: 
+    #     n1 = maxHeap.getMax()
+    #     n2 = maxHeap.getMax()
+    #     maxHeap.insert(abs(n1-n2))
+    # residue = maxHeap.getMax()
 
-    return residue
+    # return residue
 
 def compute_residue_p(A, G):
     '''
